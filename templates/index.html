@@ -13,28 +13,23 @@
 
   <body>
 
+    <!--Sets Background-->
     <style>
       html {
         background-image: url("bg.png");
         
       }
-    </style>
-  
 
-    <div class="navbar">
-      <a class="active" href="#home">
-    
-        <img src="tamu_logo.png" alt="TAMU Top Nav Logo" width="50" height="45">
-      </a>
-      <a href="#news">Upload</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">About</a>
-    </div>
+      .drag {
+        display: block;
+        place-content: right;
+        max-width: 65%;
+        margin-left: auto;
+        margin-right: auto;
 
-    <!--Styles the Top Navigation Bar-->
-    <style>
+      }
       .navbar {
-        background-color: #800000
+        background-color: #500000
       }
 
       .navbar a {
@@ -45,25 +40,71 @@
         padding: 13px 20px;
         font-family:"Couier New", 'Courier New', Courier, monospace;
       }
+
+      .MenuTitle {
+        text-align: center;
+        color: black;
+        font-size: 50px;
+        font-family: "Couier New", 'Courier New', Courier, monospace;
+    
+      }
+      
+      .SmallMenuTitle {
+        font-family: "Couier New", 'Courier New', Courier, monospace;
+        color: black;
+        text-align: center;
+        font-size: 25px;
+
+      }
     </style>
+  
+     <!--Navigation Bar -->
+    <div class="navbar">
+      <a class="active" href="#home">
+        <img src="horzTAMUlogo.png" alt="TAMU Top Nav Logo" width="200" height="60">
+      </a>
+      <a href="#news">Upload</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+    </div>
+
 
 
     <main>
 
+      <br>
+      <h1 class="MenuTitle"><b>don't worry, we got you...</b></h1>  
+      <h2 class="SmallMenuTitle">for the most part..</h2>
+      
+
+      
+      <img  src="dragNdrop.jpg" class="drag"> 
 
 
-    
-      <!--Navigation Bar -->
+      <script>
+        function dropHandler(ev){
+          console.log("Files(s) dropped");
 
+          //This prevents the files from being auto-opened
+          ev.preventDefault();
 
-      <h1>Welcome to Study Ags!</h1>  
-      <h3>Please drag and drop your file!</h3>
+          if (ev.dataTransfer.items){
+            //Use the DTIl interface to access the file
+            [...ev.dataTransfer.items].forEach((item, i)) => {
+              if (item.kind == "file"){
+                const file = item.getAsFile();
+                console.log(`… file[${i}].name = ${file.name}`)
 
-      <img src="tamu_logo.png" alt="TAMU Logo" width="100" height="100">
+              }
+            }
+          }
+        }
+      </script>
 
+      <br>
 
       <!--Creates File Upload Button-->
-      <div class="file is-warning is-light">
+      <div class="file is-warning is-light is-centered">
         <label class="file-label">
           <input class="file-input" type="file" name="resume" />
           <span class="file-cta">
